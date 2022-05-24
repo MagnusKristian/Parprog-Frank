@@ -11,10 +11,20 @@ namespace passordgenerator
 
             int convertedArgument1 = Convert.ToInt32(args[0]);
 
+            var rnd = new Random();
+
             //pattern på kommandolinjeparameter.
             string pattern = args[1];
             pattern = pattern.PadRight(convertedArgument1, 'l');
             Console.WriteLine(pattern);
+            char[] randomCharS = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
+
+            char[] randomCharL = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+
+            string[] randomSpecial = { "+", "-", "&&", "||", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":", "@", "£", "$", ",", "=", ".", "/", "\"" };
+
+            int[] randomInt = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 };
+
 
 
             string password = "";
@@ -26,7 +36,7 @@ namespace passordgenerator
                 {
                     case 'l':
                         Console.WriteLine("liten 'l'");
-                        password += "XXX"+MetodeForl();
+                        password += "XXX"+MetodeForl(rnd, randomCharS,password);
                         break;
                     case 'L':
                         Console.WriteLine("Stor 'L'");
@@ -72,12 +82,52 @@ namespace passordgenerator
         }
         //---------------------------------------------------------- 
 
-
-        private static char MetodeForl()
+        //for l
+        public static char MetodeForl(System.Random Rnd, char[] RandomCharS, string Password)
         {
             //if og alt sånt der, vi må finne ut av kode som genererer dette med en random og litt sånt og en string med hele alfabetet og velge random posisjon ut derfra.
-            return 'l';
+            
+            int randomNumber = Rnd.Next(0,RandomCharS.Length);
+            char ReturnedChar = ' ';
+            ReturnedChar = RandomCharS[randomNumber];
+            return ReturnedChar;
         }
+        // Denne over virker greit!??
+        //--------------------------------------------------
+        //for L
+        public static char MetodeForL(System.Random Rnd, char[] RandomCharL, string Password)
+        {
+            int randomNumber = Rnd.Next(0, RandomCharL.Length);
+            char ReturnedChar = ' ';
+            ReturnedChar = RandomCharL[randomNumber];
+            return ReturnedChar;
+        }
+        // Denne over virker greit!??
+        //--------------------------------------------------
+        //for s
+        public static string MetodeFors(System.Random Rnd, string[] RandomSpecial, string Password)
+        {
+            //if og alt sånt der, vi må finne ut av kode som genererer dette med en random og litt sånt og en string med hele alfabetet og velge random posisjon ut derfra.
+
+            int randomNumber = Rnd.Next(0, RandomSpecial.Length);
+            string ReturnedString = "";
+            ReturnedString = RandomSpecial[randomNumber];
+            return ReturnedString;
+        }
+        // Denne over virker greit!??
+        //--------------------------------------------------
+        //for d
+        public static char MetodeFord(System.Random Rnd, char[] RandomCharS, string Password)
+        {
+            //if og alt sånt der, vi må finne ut av kode som genererer dette med en random og litt sånt og en string med hele alfabetet og velge random posisjon ut derfra.
+
+            int randomNumber = Rnd.Next(0, RandomCharS.Length);
+            char ReturnedChar = ' ';
+            ReturnedChar = RandomCharS[randomNumber];
+            return ReturnedChar;
+        }
+
+
 
 
         private static void promptForUser()
@@ -186,6 +236,8 @@ namespace passordgenerator
             Console.WriteLine("Min. 2 special characters");
             Console.WriteLine("Min. 2 digits");
         }
+
+
     }
 }
 
